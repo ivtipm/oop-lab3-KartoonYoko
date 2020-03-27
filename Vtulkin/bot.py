@@ -28,7 +28,7 @@ class Bot(AbstractBot):
 	"""
 
 	@staticmethod
-	def find_out_condition(condition):
+	def find_out_condition(condition: str):
 		""" Перевести описание погоды для метода find_out_weather"""
 		d = {"clear": "ясно", "partly-cloudy": "малооблачно", "cloudy": "облачно с прояснениями",
 			"overcast": "пасмурно", "partly-cloudy-and-light-rain": "небольшой дождь", "partly-cloudy-and-rain": "дождь",
@@ -44,8 +44,7 @@ class Bot(AbstractBot):
 			"overcast-and-light-snow": "небольшой снег","cloudy-and-snow": "снег"
 			}
 		for key in d.keys():
-			if condition == key:
-				return d[key]
+			return d[key]
 		return "Непонятные условия погоды."
 
 	def find_out_weather(self) -> str:
@@ -84,23 +83,23 @@ class Bot(AbstractBot):
 		except FileNotFoundError:
 			self._rec = {}
 
-	def fill_dict(self, key, data):
+	def fill_dict(self, key: str, data: list):
 		""" ЗАполнить запись"""
 		self._rec[key] = data
 
-	def set_name_of_user(self, name):
+	def set_name_of_user(self, name: str):
 		""" задает имя пользователя и ищет подходящий файл с историей сообщений"""
 		if isinstance(name, str):
 			self._userName = name
 			self.read_from_json()
 
-	def __init__(self, user_name="user"):
+	def __init__(self, user_name: str = "user"):
 		""" Конструктор для инициализации имени пользователя и истории сообщений"""
 		self._userName = user_name  # Имя пользователя
 		self._rec = {}
 		self.read_from_json()  # инициализируется свойство _rec для хранения истории переписки в виде словаря
 
-	def reply(self, s) -> str:
+	def reply(self, s: str) -> str:
 		""" Метод "ответа бота". Вернет строку с ответом. """
 		if isinstance(s, str):
 			answer = 0  # для ответа на арифметические вопросы

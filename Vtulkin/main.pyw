@@ -1,7 +1,7 @@
 from bot import Bot
 import sys
 import os
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 import form_main
 import form_authorization
 
@@ -10,6 +10,7 @@ class Main(QtWidgets.QMainWindow, form_main.Ui_Form_main):
     """ класс главного окна"""
     def __init__(self):
         super().__init__()
+        self.setWindowIcon(QtGui.QIcon('bot_with_glasses.jpg'))
         self.setupUi(self)
         self._name_of_user = "user"  # имя пользователя, которое нужно передать боту
         self._bot = Bot(self._name_of_user)
@@ -46,6 +47,7 @@ class StartWindow(QtWidgets.QMainWindow, form_authorization.Ui_Form_authorizatio
     """ класс начального окна"""
     def __init__(self, main_window):
         super().__init__()
+        self.setWindowIcon(QtGui.QIcon('bot_with_glasses.jpg'))
         self.setupUi(self)
         self._main = main_window  # ссылка на главную форму, чтобы ее открыть
         self.pushButton.clicked.connect(self.push_btn_enter)
