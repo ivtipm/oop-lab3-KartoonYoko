@@ -43,8 +43,8 @@ class Bot(AbstractBot):
 			"снегопад","cloudy-and-light-snow":"небольшой снег",
 			"overcast-and-light-snow": "небольшой снег","cloudy-and-snow": "снег"
 			}
-		for key in d.keys():
-			return d[key]
+		if condition in d.keys():
+			return d[condition]
 		return "Непонятные условия погоды."
 
 	def find_out_weather(self) -> str:
